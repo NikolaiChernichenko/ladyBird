@@ -1,0 +1,64 @@
+name: 'Setup action'
+description: 'Sets up the dependencies for the CI VM'
+author: 'Andrew Kaster <akaster@serenityos.org>'
+inputs:
+  os:
+    description: 'Operating System to set up'
+    required: true
+    default: 'Linux'
+  arch:
+    description: 'Target Architecture to set up'
+    required: false
+    default: 'x86_64'
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: 3.12
+        cache: 'pip'
+    - name: 'Install Python dependencies'
+      shell: bash
+      run: pip install pyyaml requests six
+
+    - name: 'Install Dependencies'
+      if: ${{ inputs.os == 'Linux' }}
+      shell: bash
+      run: |
+        set -e
+
+        wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+        sudo add-apt-repository 'deb http://apt.llvm.org/noble/ llvm-toolchain-noble-19 main'
+
+        sudo apt-get update -y
+        sudo apt-get install -y autoconf autoconf-archive automake build-essential ccache clang-19 clang++-19 cmake curl fonts-liberation2 \
+            gcc-13 g++-13 libegl1-mesa-dev libgl1-mesa-dev libpulse-dev libssl-dev \
+            libstdc++-13-dev lld-19 nasm ninja-build qt6-base-dev qt6-tools-dev-tools tar unzip zip
+
+        sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-19 100
+        sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-19 100
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-13 100
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-13 100
+
+        wget https://github.com/WebAssembly/wabt/releases/download/1.0.35/wabt-1.0.35-ubuntu-20.04.tar.gz
+        tar -xzf ./wabt-1.0.35-ubuntu-20.04.tar.gz
+        rm ./wabt-1.0.35-ubuntu-20.04.tar.gz
+        echo "${{ github.workspace }}/wabt-1.0.35/bin" >> $GITHUB_PATH
+
+    - name: 'Select latest Xcode'
+      if: ${{ inputs.os == 'macOS' || inputs.os == 'Android' }}
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: 16.1
+
+    - name: 'Install Dependencies'
+      if: ${{ inputs.os == 'macOS' || inputs.os == 'Android' }}
+      shell: bash
+      run: |
+        set -e
+        brew update
+        brew install autoconf autoconf-archive automake bash ccache coreutils llvm@19 nasm ninja qt unzip wabt
+
+    - name: 'Install vcpkg'
+      shell: bash
+      run: ./Toolchain/BuildVcpkg.sh

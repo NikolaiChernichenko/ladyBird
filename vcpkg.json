@@ -1,0 +1,199 @@
+{
+  "builtin-baseline": "b322364f06308bdd24823f9d8f03fe0cc86fd46f",
+  "dependencies": [
+    {
+      "name": "angle",
+      "platform": "osx"
+    },
+    {
+      "name": "curl",
+      "features": [
+        "brotli",
+        "http2"
+      ]
+    },
+    {
+      "name": "dirent",
+      "platform": "windows"
+    },
+    {
+      "name": "ffmpeg",
+      "platform": "!android",
+      "features": [
+        "avcodec",
+        "avformat",
+        "dav1d",
+        "openh264",
+        "opus",
+        "webp",
+        "theora",
+        "vorbis",
+        "vpx",
+        "zlib"
+      ]
+    },
+    {
+      "name": "fontconfig",
+      "platform": "linux | freebsd | openbsd | osx | windows"
+    },
+    {
+      "name": "harfbuzz",
+      "platform": "linux | freebsd | openbsd | windows",
+      "features": [
+        "freetype",
+        "icu"
+      ]
+    },
+    {
+      "name": "harfbuzz",
+      "platform": "osx",
+      "features": [
+        "coretext",
+        "icu"
+      ]
+    },
+    "icu",
+    "libjpeg-turbo",
+    "libjxl",
+    {
+      "name": "libpng",
+      "features": [
+        "apng"
+      ]
+    },
+    "libproxy",
+    {
+      "name": "libavif",
+      "features": [
+        "dav1d"
+      ]
+    },
+    {
+      "name": "libwebp",
+      "features": [
+        "anim",
+        "libwebpmux",
+        "simd"
+      ]
+    },
+    {
+      "name": "mman",
+      "platform": "windows"
+    },
+    "openssl",
+    {
+      "name": "pthread",
+      "platform": "windows"
+    },
+    "simdutf",
+    {
+      "name": "skia",
+      "platform": "osx",
+      "features": [
+        "metal",
+        "fontconfig",
+        "harfbuzz",
+        "icu"
+      ]
+    },
+    {
+      "name": "skia",
+      "platform": "linux | freebsd | openbsd | windows",
+      "features": [
+        "freetype",
+        "fontconfig",
+        "harfbuzz",
+        "icu",
+        "vulkan"
+      ]
+    },
+    {
+      "name": "skia",
+      "platform": "android"
+    },
+    "sqlite3",
+    {
+      "name": "vulkan",
+      "platform": "!android"
+    },
+    {
+      "name": "vulkan-headers",
+      "platform": "!android"
+    },
+    "woff2"
+  ],
+  "overrides": [
+    {
+      "name": "angle",
+      "version": "chromium_5414#9"
+    },
+    {
+      "name": "curl",
+      "version": "8.11.1#0"
+    },
+    {
+      "name": "dirent",
+      "version": "1.24#0"
+    },
+    {
+      "name": "ffmpeg",
+      "version": "7.1#1"
+    },
+    {
+      "name": "fontconfig",
+      "version": "2.14.2#1"
+    },
+    {
+      "name": "icu",
+      "version": "74.2#2"
+    },
+    {
+      "name": "libjpeg-turbo",
+      "version": "3.1.0#0"
+    },
+    {
+      "name": "libjxl",
+      "version": "0.11.1"
+    },
+    {
+      "name": "libpng",
+      "version": "1.6.43#3"
+    },
+    {
+      "name": "libproxy",
+      "version": "0.4.18#3"
+    },
+    {
+      "name": "libavif",
+      "version": "1.0.4#1"
+    },
+    {
+      "name": "libwebp",
+      "version": "1.4.0#1"
+    },
+    {
+      "name": "mman",
+      "version": "git-f5ff813#5"
+    },
+    {
+      "name": "openssl",
+      "version": "3.4.0#0"
+    },
+    {
+      "name": "simdutf",
+      "version": "5.6.0#0"
+    },
+    {
+      "name": "skia",
+      "version": "129#0"
+    },
+    {
+      "name": "sqlite3",
+      "version": "3.47.2#0"
+    },
+    {
+      "name": "woff2",
+      "version": "1.0.2#4"
+    }
+  ]
+}
